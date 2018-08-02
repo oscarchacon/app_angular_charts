@@ -1,0 +1,21 @@
+<div class="input-group">
+  <input type="search" readonly
+  class="form-control custom-control"
+  bsDatepicker
+  [bsConfig]="{dateInputFormat: dateFormat}"
+  #datepicker="bsDatepicker"
+  [minDate]="MinDate"
+  [maxDate]="MaxDate"
+  [(ngModel)]="value"
+  (ngModelChange)="dateChange();"
+  [placement]="posicion"
+  [disabled]="disabled">
+  <div class="input-group-append">
+    <span class="input-group-text" (click)="datepicker.toggle()" *ngIf="!smallmode">
+      <i class="fa fa-calendar"></i>
+    </span>
+  </div>
+  <a class="clearable__clear" *ngIf="value && !smallmode" (click)="cleanInput()">
+    <i class="fa fa-times"></i>
+  </a>
+</div>

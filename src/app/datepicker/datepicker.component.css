@@ -1,0 +1,22 @@
+.custom-control {
+  padding: 4px;
+  padding-right: 30px;
+}
+
+.clearable__clear{
+  position: absolute;
+  top: 50%;
+  right: 40px;
+  height: 20px;
+  width: 20px;
+  margin-top: -10px;
+  z-index: 100;
+  line-height: 20px;
+  text-align: center;
+  color: rgb(163, 163, 163);
+  /* cursor: pointer; */
+}
+
+.clearable__clear:hover{
+  color: rgb(117, 117, 117);
+}

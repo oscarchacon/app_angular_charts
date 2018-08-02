@@ -1,0 +1,6 @@
+<div class="toast-container">
+  <div *ngFor="let alert of alerts" class="{{ cssClass(alert) }} alert-dismissable" [ngClass]="{'closing': alert.close}">
+    <b>{{alert.title}}</b> <a class="close" (click)="removeAlert(alert)">&times;</a>
+    <br />{{alert.message}}    
+  </div>
+</div>

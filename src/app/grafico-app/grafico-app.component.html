@@ -1,0 +1,75 @@
+<!-- CODIGO CREADO POR OSCAR CHACON CAUTIN-->
+<br>
+<div class="row">
+  <div class="col">
+    <div class="form-group">
+      <label>Índice</label>
+      <select class="form-control" [(ngModel)]="indice" [disabled]="loading">
+        <option value="">Todos</option>
+        <option value="IGPA">IGPA</option>
+        <option value="IPSA">IPSA</option>
+        <option value="INTER-10">INTER-10</option>
+      </select>
+    </div>
+  </div>
+  <div class="col">
+    <div class="form-group">
+      <label>Período</label>
+      <select class="form-control" [(ngModel)]="periodo" [disabled]="loading">
+        <option value="" disabled>Seleccione Periodo</option>
+        <option value="DI" *ngIf="indice != 'IGPA' && indice != 'IPSA' && indice != 'INTER-10'">Diario</option>
+        <option value="ME">Mensual</option>
+        <option value="AN">Anual</option>
+      </select>
+    </div>
+  </div>
+  <div class="col">
+    <div class="form-group">
+      <label>Fecha desde</label>
+      <datepicker [(value)]="f_desde" [MaxDate]="f_hasta" [disabled]="loading"></datepicker>
+    </div>
+  </div>
+  <div class="col">
+    <div class="form-group">
+      <label>Fecha Hasta</label>
+      <datepicker [(value)]="f_hasta" [MinDate]="f_desde" [disabled]="loading"></datepicker>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <label></label>
+    <button class="btn btn-primary" (click)="getIndicadores(periodo, f_desde, f_hasta, indice)" [disabled]="loading">
+      <i [ngClass]="loading ? 'fa fa-spin fa-gear' : 'fa fa-search'"></i> Buscar Indicadores
+    </button>
+  </div>
+</div>
+<br>
+<ng-container *ngIf="!loading && this.muestraGrafico">
+  <ng-container *ngFor="let iobj of indices">
+    <div class="row">
+      <div class="col">
+        <h3>ÍNDICE {{iobj}}</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div style="display: block">
+          <canvas mdbChart
+              [chartType]="chartType"
+              [datasets]="grupos[iobj]['ejeY']"
+              [labels]="grupos[iobj]['ejeX']"
+              [colors]="chartColors"
+              [options]="chartOptions"
+              [legend]="true"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)">
+          </canvas>
+        </div>
+      </div>
+    </div>
+    <br>
+  </ng-container>
+</ng-container>
+
+

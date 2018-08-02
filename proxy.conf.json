@@ -1,0 +1,10 @@
+{
+  "/posts": {
+    "target": "http://bcstest.mybluemix.net/bcstest/rest/indices/consultaIndices",
+    "secure": true,
+    "pathRewrite": {
+    "^/posts": ""
+  },
+    "changeOrigin": true
+  }
+}
